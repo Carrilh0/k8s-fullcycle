@@ -16,4 +16,4 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "carrilh0/hello-go:v2"
+          image: "carrilh0/hello-go:v3"
