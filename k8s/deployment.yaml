@@ -17,6 +17,14 @@ spec:
       containers:
         - name: goserver
           image: "carrilh0/hello-go:v6.1"
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            periodSeconds: 5 # a cada 5 segundos
+            failureThreshold: 2 # limite de problemas para reiniciar
+            timeoutSeconds: 2 # tempo limite esperando a requisição
+            successThreshold: 1 # quantas vezes tem que testar para garantir que está ok
           envFrom:
             - configMapRef:  
                 name: goserver-env
