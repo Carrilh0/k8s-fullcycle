@@ -16,7 +16,15 @@ spec:
     spec:
       containers:
         - name: goserver
-          image: "carrilh0/hello-go:v6.3"
+          image: "carrilh0/hello-go:v6.2"
+
+          resources:
+            requests: # Minimo -> Sequestrado (RESERVADO) -> POD
+              cpu: "0.3"
+              memory: 20Mi
+            limits: # Máximo por POD 
+              cpu: "0.3"
+              memory: 25Mi
 
           startupProbe:
             httpGet:
