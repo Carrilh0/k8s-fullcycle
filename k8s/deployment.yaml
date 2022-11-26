@@ -20,10 +20,10 @@ spec:
 
           resources:
             requests: # Minimo -> Sequestrado (RESERVADO) -> POD
-              cpu: "0.3"
+              cpu: "0.1"
               memory: 20Mi
             limits: # Máximo por POD 
-              cpu: "0.3"
+              cpu: "0.1"
               memory: 25Mi
 
           startupProbe:
@@ -61,8 +61,14 @@ spec:
           volumeMounts:
             - mountPath: "/go/myfamily"
               name: config
+            - mountPath: "/go/pvc"
+              name: goserver-volume
     
       volumes:
+        - name: goserver-volume
+          persistentVolumeClaim:
+            claimName: goserver-pvc
+
         - name: config
           configMap:
             name: configmap-family
