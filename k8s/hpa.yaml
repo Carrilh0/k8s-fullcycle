@@ -2,7 +2,7 @@ apiVersion: autoscaling/v1
 kind: HorizontalPodAutoscaler
 metadata:
   name: goserver-hpa
-spec: 
+spec:
   scaleTargetRef:
     apiVersion: apps/v1
     name: goserver
