@@ -20,10 +20,10 @@ spec:
 
           resources:
             requests: # Minimo -> Sequestrado (RESERVADO) -> POD
-              cpu: "0.5"
+              cpu: "0.1"
               memory: 20Mi
             limits: # Máximo por POD 
-              cpu: "0.5"
+              cpu: "0.3"
               memory: 25Mi
 
           startupProbe:
