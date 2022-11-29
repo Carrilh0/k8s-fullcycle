@@ -5,7 +5,7 @@ metadata:
 spec:
   selector:
     app: goserver
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: goserver-service
     port: 9001 #Porta do service
