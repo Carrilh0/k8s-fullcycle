@@ -1,0 +1,39 @@
+#Criação da service account
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: server
+
+---
+
+#Criação da Role
+apiVersion: rbac.authorization.k8s.io/v1
+#kind: Role 
+kind: ClusterRole 
+metadata:
+  name: server-read
+rules:
+- apiGroups: [""]
+  resources: ["pods","services"]
+  verbs: ["get","watch","list"]
+- apiGroups: ["apps"]
+  resources: ["deployments"]
+  verbs: ["get","watch","list"]  
+
+---
+
+#Atribuição da Service Accountf
+apiVersion: rbac.authorization.k8s.io/v1
+#kind: RoleBinding
+kind: ClusterRoleBinding
+metadata:
+  name: server-read-bind
+subjects:
+- kind: ServiceAccount
+  name: server
+  namespace: prod
+roleRef:
+  #kind: Role
+  kind: ClusterRole
+  name: server-read
+  apiGroup: rbac.authorization.k8s.io
