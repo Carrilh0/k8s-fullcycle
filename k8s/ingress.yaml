@@ -3,6 +3,9 @@ kind: Ingress
 metadata:
   name: ingress-host
   namespace: default
+  annotations: #Serve para mandar informaçoes para bibliotecas externas
+    cert-manager.io/cluster-issuer: letsencrypt
+    ingress.kubernets.io/force-ssl-redirect: "true"
 spec:
   ingressClassName: nginx
   rules:
@@ -16,3 +19,9 @@ spec:
             name: goserver-service
             port:
               number: 9001
+  tls:
+  - hosts:
+    - "ingress.armycaffeine.com.br"
+    secretName: letsencrypt-tls
+
+# kubectl get certificates
